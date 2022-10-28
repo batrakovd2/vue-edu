@@ -1,16 +1,14 @@
 <template>
-    <div>
-        <div class="post">
-            <strong>Название </strong>
-            <p>Пост о JS</p>    
-        </div>
-        <div class="post">
-            <strong>Название </strong>
-            <p>Пост о JS</p>    
-        </div>
-        <div class="post">
-            <strong>Название </strong>
-            <p>Пост о JS</p>    
+    <div class="app">
+        <form>
+            <h4>Создание поста</h4>
+            <input class="input-control" type="text" placeholder="Название" />
+            <input class="input-control" type="text" placeholder="Описание" />
+            <button class="btn">Создать</button>
+        </form>
+        <div class="post" v-for="post in posts">
+            <strong>{{ post.title }}</strong>
+            <p>{{ post.body }}</p>    
         </div>
     </div>
 </template>
@@ -19,17 +17,15 @@
     export default {
         data() {
             return {
-                likes: 0,
-                dislikes: 5,
+                posts: [
+                    {id: 1, title: 'title 1', body: 'body 1'},
+                    {id: 2, title: 'title 2', body: 'body 2'},
+                    {id: 3, title: 'title 3', body: 'body 3'}
+                ]
             }
         },
         methods: {
-            addLike() {
-                this.likes += 1;
-            },
-            addDislike() {
-                this.dislikes += 1;
-            }
+
         }
     }
 </script>
@@ -41,10 +37,35 @@
     box-sizing: border-box;
 }
 
+.app{
+    padding: 20px;
+}
+
 .post{
     padding: 15px;
     border: 2px solid teal;
     margin: 15px 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-control{
+    width: 100%;
+    border: 1px solid teal;
+    padding: 10px 15px;
+    margin-top: 15px;
+}
+
+.btn{
+    margin-top: 15px;
+    align-self: end;
+    padding: 10px 15px;
+    background: none;
+    border: 1px solid teal;
+    color: teal;
 }
 </style>
 
