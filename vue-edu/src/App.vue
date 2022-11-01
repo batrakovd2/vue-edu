@@ -2,9 +2,9 @@
     <div class="app">
         <form>
             <h4>Создание поста</h4>
-            <input class="input-control" type="text" placeholder="Название" />
-            <input class="input-control" type="text" placeholder="Описание" />
-            <button class="btn">Создать</button>
+            <input v-bind:value="title" @input="inputTitle" class="input-control" type="text" placeholder="Название" />
+            <input v-bind:value="body" @input="body = $event.target.value" class="input-control" type="text" placeholder="Описание" />
+            <button class="btn" @click="createPost">Создать</button>
         </form>
         <div class="post" v-for="post in posts">
             <strong>{{ post.title }}</strong>
@@ -21,11 +21,18 @@
                     {id: 1, title: 'title 1', body: 'body 1'},
                     {id: 2, title: 'title 2', body: 'body 2'},
                     {id: 3, title: 'title 3', body: 'body 3'}
-                ]
+                ],
+                title: '',
+                body: ''
             }
         },
         methods: {
+            createPost() {
 
+            },
+            inputTitle(event) {
+                console.log(event)
+            }
         }
     }
 </script>
