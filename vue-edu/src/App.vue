@@ -1,15 +1,7 @@
 <template>
     <div class="app">
-        <form>
-            <h4>Создание поста</h4>
-            <input v-bind:value="title" @input="inputTitle" class="input-control" type="text" placeholder="Название" />
-            <input v-bind:value="body" @input="body = $event.target.value" class="input-control" type="text" placeholder="Описание" />
-            <button class="btn" @click="createPost">Создать</button>
-        </form>
-        <div class="post" v-for="post in posts">
-            <strong>{{ post.title }}</strong>
-            <p>{{ post.body }}</p>    
-        </div>
+
+        
     </div>
 </template>
 
@@ -28,11 +20,18 @@
         },
         methods: {
             createPost() {
-
+                const newPost = {
+                    id: Date.now(),
+                    title: this.title,
+                    body: this.body
+                }
+                this.posts.push(newPost)
+                this.title = ''
+                this.body = ''
             },
-            inputTitle(event) {
-                console.log(event)
-            }
+            // inputTitle(event) {
+            //     console.log(event)
+            // }
         }
     }
 </script>
@@ -48,11 +47,7 @@
     padding: 20px;
 }
 
-.post{
-    padding: 15px;
-    border: 2px solid teal;
-    margin: 15px 20px;
-}
+
 
 form{
     display: flex;
